@@ -1,9 +1,13 @@
 import React from 'react'
-import './App.module.css'
+import styles from './App.module.scss'
+import Filters from '../../components/Filters'
 
 function App() {
   return (
-    <div>Hello World</div>
+    <div className={styles.appWrapper}>
+      <Filters/>
+      <div className={styles.flightWrapper}>Перелёты</div>
+    </div>
   );
 }
 
