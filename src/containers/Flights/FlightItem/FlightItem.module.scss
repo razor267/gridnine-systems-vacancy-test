@@ -1,0 +1,33 @@
+@import "../../../styles/index";
+
+.flightWrapper {
+  display: grid;
+  width: 95%;
+
+  .header {
+    display: grid;
+    grid-template-columns: auto auto;
+    color: $white;
+    background: $blue;
+    padding: 5px;
+
+    .priceWrapper {
+      justify-self: end;
+      justify-items: end;
+      display: grid;
+      grid-template-rows: auto auto;
+
+      .priceText {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .button {
+    height: 30px;
+    border: none;
+    color: $white;
+    background: $orange;
+    cursor: pointer;
+  }
+}

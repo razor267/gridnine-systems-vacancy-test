@@ -4,8 +4,6 @@ import flights from '../../mock/flights'
 
 const Filters = () => {
 
-console.log(flights)
-
     return (
         <div className={styles.filterWrapper}>
             <strong>Сортировать</strong>

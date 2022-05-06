@@ -1,0 +1,10 @@
+@import "src/styles/index";
+
+.wrapper {
+  display: grid;
+  padding: 10px;
+}
+
+.wrapperBottomBorder {
+  border-bottom: 2px solid $blue;
+}
