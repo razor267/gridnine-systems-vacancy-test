@@ -8,14 +8,12 @@ type PropsType = {
 }
 const FlightItem: FC<PropsType> = ({flight}) => {
 
-    console.log(flight)
-
     return (
         <div className={styles.flightWrapper}>
             <div className={styles.header}>
                 <div>{flight.carrier.caption}</div>
                 <div className={styles.priceWrapper}>
-                    <div>{flight.price.total.amount} ₽</div>
+                    <div className={styles.price}>{flight.price.total.amount} ₽</div>
                     <div className={styles.priceText}>Стоимость для одного взрослого пассажира</div>
                 </div>
             </div>
@@ -30,23 +28,3 @@ const FlightItem: FC<PropsType> = ({flight}) => {
 }
 
 export default FlightItem
-
-
-/*
-<div>{flight.carrier.caption}</div>
-<div>{flight.price.total.amount}</div>
-<div>{flight.legs[0].duration}</div>
-<div>{flight.legs[0].segments[0].departureAirport.uid}</div>
-<div>{flight.legs[0].segments[0].departureAirport.caption}</div>
-<div>{flight.legs[0].segments[0].departureCity?.uid}</div>
-<div>{flight.legs[0].segments[0].departureCity?.caption}</div>
-<div>{flight.legs[0].segments[0].arrivalCity?.uid}</div>
-<div>{flight.legs[0].segments[0].arrivalCity?.caption}</div>
-<div>{flight.legs[0].segments[0].arrivalDate}</div>
-<div>{flight.legs[0].segments[0].departureDate}</div>
-<div>{flight.legs[0].segments[0].airline.uid}</div>
-<div>{flight.legs[0].segments[0].airline.caption}</div>
-<div>{flight.legs[0].segments[0].airline.airlineCode}</div>
-<div>{flight.legs[0].segments[0].arrivalAirport.uid}</div>
-<div>{flight.legs[0].segments[0].arrivalAirport.caption}</div>
-*/

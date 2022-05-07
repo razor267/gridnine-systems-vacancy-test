@@ -2,7 +2,25 @@
 
 .filterWrapper {
   display: grid;
-  background-color: $gray;
   font-size: 12px;
-  padding: 10px;
+  padding: 30px 0 0 20px;
+  height: max-content;
+  gap: 20px;
+
+  .filter {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap: 2px 5px;
+    align-items: center;
+  }
+
+  .priceWrapper {
+    display: grid;
+    gap: 5px;
+
+    input {
+      height: 18px;
+      width: 70%;
+    }
+  }
 }

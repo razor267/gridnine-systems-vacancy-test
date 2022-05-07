@@ -5,12 +5,11 @@ import FlightItem from './FlightItem'
 
 const Flights = () => {
 
-console.log(flights)
-
     return (
         <div className={styles.flightsWrapper}>
           <FlightItem flight={flights.result.flights[141].flight}/>
           <FlightItem flight={flights.result.flights[142].flight}/>
+          <FlightItem flight={flights.result.flights[16].flight}/>
         </div>
     )
 }

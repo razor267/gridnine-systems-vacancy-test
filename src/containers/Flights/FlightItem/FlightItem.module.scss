@@ -17,6 +17,10 @@
       display: grid;
       grid-template-rows: auto auto;
 
+      .price {
+        font-size: 18px;
+      }
+
       .priceText {
         font-size: 10px;
       }
@@ -24,7 +28,7 @@
   }
 
   .button {
-    height: 30px;
+    height: 35px;
     border: none;
     color: $white;
     background: $orange;

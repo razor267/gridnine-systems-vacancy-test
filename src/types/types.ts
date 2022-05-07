@@ -1,4 +1,4 @@
-type SegmentType = {
+export type SegmentType = {
     departureAirport: {
         uid: string
         caption: string
