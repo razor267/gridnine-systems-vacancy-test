@@ -2,7 +2,13 @@
 
 .flightsWrapper {
   display: grid;
-  padding-top: 10px;
+  padding: 10px 0;
   justify-items: center;
   gap: 20px;
+
+  .button {
+    width: 20%;
+    height: 25px;
+    cursor: pointer;
+  }
 }
