@@ -2,6 +2,8 @@
 
 .filterWrapper {
   display: grid;
+  position: sticky;
+  top: 0;
   font-size: 12px;
   padding: 30px 0 0 20px;
   height: max-content;
@@ -10,6 +12,13 @@
   .filter {
     display: grid;
     grid-template-columns: max-content max-content;
+    gap: 2px 5px;
+    align-items: center;
+  }
+
+  .filterAirline {
+    display: grid;
+    grid-template-columns: max-content;
     gap: 2px 5px;
     align-items: center;
   }

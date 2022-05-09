@@ -32,33 +32,43 @@ export type LegType = {
 }
 
 export type FlightType = {
-    carrier: {
-        caption: string
-    }
-    price: {
-        total: {
-            amount: string
+    flight: {
+        carrier: {
+            caption: string
         }
+        price: {
+            total: {
+                amount: string
+            }
+        }
+        legs: LegType[]
     }
-    legs: LegType[]
 }
 
 export type SortType = 'price_min' | 'price_max' | 'time'
 
-export type StateType = {
-    // flights: FlightType[]
-    flights: FlightsType
-    filters: {
-        sort: SortType
-        transfer: {
-            one: boolean
-            no: boolean
-        }
-        price: {
-            min: number | ''
-            max: number | ''
-        }
+export type AirlineType = {
+    uid: string
+    caption: string
+}
+
+export type FiltersType = {
+    sort: SortType
+    transfer: {
+        one: boolean
+        no: boolean
     }
+    price: {
+        min: number | ''
+        max: number | ''
+    }
+    airlines: AirlineType[]
+}
+
+export type StateType = {
+    flights: FlightsType
+    renderFlights: FlightType[]
+    filters: FiltersType
 }
 
 export type TransferEditActionType = {
@@ -72,6 +82,3 @@ export type PriceEditActionType = {
 }
 
 export type FlightsType = typeof flights.result.flights
-
-// type InferActionsTypes<T> = T extends {[key: string]: infer U} ? U : never
-// export type ActionsTypes = ReturnType<InferActionsTypes<typeof actions>>

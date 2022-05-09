@@ -5,10 +5,16 @@
   padding: 10px 0;
   justify-items: center;
   gap: 20px;
+  height: max-content;
 
   .button {
     width: 20%;
     height: 25px;
     cursor: pointer;
+  }
+
+  .noFlights {
+    align-self: center;
+    font-size: 20px;
   }
 }

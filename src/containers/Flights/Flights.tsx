@@ -1,34 +1,51 @@
-import React, {useEffect, useState} from 'react'
+import React, {useCallback, useEffect, useState} from 'react'
 import styles from './Flights.module.scss'
 import FlightItem from './FlightItem'
-import {useAppSelector} from '../../hooks/hooks'
+import {useAppDispatch, useAppSelector} from '../../hooks/hooks'
 import {FlightType} from '../../types/types'
+import {sortFlightsArray} from '../../redux/reduxSlice'
 
 const Flights = () => {
 
-    const flights = useAppSelector(state => state.app.flights)
+    const dispatch = useAppDispatch()
+
+    const flights = useAppSelector(state => state.app.renderFlights)
+    const filters = useAppSelector(state => state.app.filters)
 
     const [renderArr, setRenderArr] = useState<FlightType[]>([])
-    const [itemCol, setItemCol] = useState(2)
+    const [itemCol, setItemCol] = useState(0)
 
-    useEffect(() => {
-        for (let i = itemCol - 2; i < itemCol; i++) {
-            if (i < flights.length) {
-                setRenderArr(prev => [...prev, flights[i].flight])
-            } else break
+    const createRenderArray = useCallback((startIndex: number) => {
+        if (itemCol !== 0) {
+            for (let i = startIndex; i < itemCol; i++) {
+                if (i < flights.length) {
+                    setRenderArr(prev => [...prev, flights[i]])
+                } else break
+            }
         }
     }, [flights, itemCol])
+
+    useEffect(() => {
+        dispatch(sortFlightsArray('price_min'))
+        setItemCol(2)
+    }, [dispatch])
+
+    useEffect(() => {
+        setRenderArr([])
+        createRenderArray(0)
+    }, [createRenderArray, filters.sort])
 
     return (
         <div className={styles.flightsWrapper}>
             {renderArr.map((item, index) => <FlightItem flight={item} key={index}/>)}
-            {renderArr.length < flights.length &&
+            {renderArr.length !== 0 && renderArr.length < flights.length &&
             <button
                 className={styles.button}
                 onClick={() => setItemCol(prev => prev + 2)}
             >
                 Показать еще
             </button>}
+            {renderArr.length === 0 && <div className={styles.noFlights}>Нет подходящих рейсов</div>}
         </div>
     )
 }
