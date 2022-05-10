@@ -21,6 +21,19 @@
     grid-template-columns: max-content;
     gap: 2px 5px;
     align-items: center;
+
+    .airline {
+      display: grid;
+      grid-template-columns: max-content 45% max-content;
+      gap: 2px 5px;
+      align-items: center;
+
+      .airlineName {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+      }
+    }
   }
 
   .priceWrapper {
@@ -29,7 +42,7 @@
 
     input {
       height: 18px;
-      width: 70%;
+      width: 60%;
     }
   }
 }

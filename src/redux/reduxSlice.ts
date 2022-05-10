@@ -104,10 +104,26 @@ export const reduxSlice = createSlice({
                         Number(item.flight.price.total.amount) <= state.filters.price.max)
                 }
             }
+            state.filters.airlines = airlinesObject(state.renderFlights, state.filters.airlines)
+            if (state.filters.airlines.find(item => item.checked) !== undefined) {
+                let newArray: FlightType[] = []
+                state.filters.airlines.forEach(item => {
+                    if (item.checked) {
+                        newArray = [...newArray, ...state.renderFlights.filter(el => el.flight.carrier.caption === item.caption)]
+                    }
+                })
+                state.renderFlights = newArray
+            }
+        },
+        airlinesEdit: (state: StateType, action: PayloadAction<string>) => {
+            const airline = state.filters.airlines.find(item => item.uid === action.payload)
+            if (airline !== undefined) {
+                airline.checked = !airline.checked
+            }
         }
     }
 })
 
-export const {transferEdit, priceEdit, sortFlightsArray, filtersEdit} = reduxSlice.actions
+export const {transferEdit, priceEdit, sortFlightsArray, filtersEdit, airlinesEdit} = reduxSlice.actions
 
 export default reduxSlice.reducer

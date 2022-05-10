@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react'
 import styles from './Filters.module.scss'
 import {useAppDispatch, useAppSelector} from '../../hooks/hooks'
-import {filtersEdit, priceEdit, sortFlightsArray, transferEdit} from '../../redux/reduxSlice'
+import {airlinesEdit, filtersEdit, priceEdit, sortFlightsArray, transferEdit} from '../../redux/reduxSlice'
+import {AirlineType} from '../../types/types'
 
 const Filters = () => {
 
@@ -11,10 +12,25 @@ const Filters = () => {
     const maxPrice = useAppSelector(state => state.app.filters.price.max)
     const sort = useAppSelector(state => state.app.filters.sort)
     const airlines = useAppSelector(state => state.app.filters.airlines)
+    const flights = useAppSelector(state => state.app.flights)
 
     const editFiltersAndSort = () => {
         dispatch(filtersEdit())
         dispatch(sortFlightsArray(sort))
+    }
+
+    const airlineMinPrice = (airline: AirlineType) => {
+        let min: number = 0
+        flights.forEach(item => {
+            if (item.flight.carrier.uid === airline.uid) {
+                if (min === 0) {
+                    min = Number(item.flight.price.total.amount)
+                } else if (Number(item.flight.price.total.amount) < min) {
+                    min = Number(item.flight.price.total.amount)
+                }
+            }
+        })
+        return min
     }
 
     return (
@@ -96,9 +112,17 @@ const Filters = () => {
             <strong>Авиакомпании</strong>
             <div className={styles.filterAirline}>
                 {airlines.map(item => (
-                    <div key={item.uid} className={styles.filter}>
-                        <input type="checkbox"/>
-                        <div>- {item.caption}</div>
+                    <div key={item.uid} className={styles.airline}>
+                        <input
+                            type="checkbox"
+                            checked={item.checked}
+                            onChange={() => {
+                                dispatch(airlinesEdit(item.uid))
+                                editFiltersAndSort()
+                            }}
+                        />
+                        <div className={styles.airlineName}>- {item.caption}</div>
+                        <div>от {airlineMinPrice(item)} р.</div>
                     </div>
                 ))}
             </div>

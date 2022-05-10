@@ -1,11 +1,25 @@
-import {AirlineType, FlightsType} from '../types/types'
+import {AirlineType, FlightType} from '../types/types'
 
-const airlinesObject = (flights: FlightsType) => {
+const airlinesObject = (flights: FlightType[], airlineArray?: AirlineType[]) => {
 
     const airlines: AirlineType[] = []
 
-    flights.forEach(item => airlines.find(el => el.caption === item.flight.carrier.caption) === undefined
-        && airlines.push({uid: item.flight.carrier.uid, caption: item.flight.carrier.caption}))
+    airlineArray?.forEach(item => item.checked &&
+    airlines.push(item))
+
+    flights.forEach(item => {
+        if (airlines.find(el => el.caption === item.flight.carrier.caption) === undefined) {
+            let checked: boolean = false
+            if (airlineArray) {
+                airlineArray.forEach(airline => {
+                    if (item.flight.carrier.caption === airline.caption) {
+                        airline.checked ? checked = true : checked = false
+                    }
+                })
+            }
+            airlines.push({uid: item.flight.carrier.uid, caption: item.flight.carrier.caption, checked: checked})
+        }
+    })
 
     airlines.sort((a: AirlineType, b: AirlineType) => {
             const el1 = a.caption.toLowerCase()

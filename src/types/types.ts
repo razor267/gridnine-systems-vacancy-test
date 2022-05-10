@@ -1,5 +1,10 @@
 import flights from '../mock/flights'
 
+export type AirlineLogo = {
+    logo: string
+    uid: string
+}
+
 export type SegmentType = {
     departureAirport: {
         uid: string
@@ -35,6 +40,7 @@ export type FlightType = {
     flight: {
         carrier: {
             caption: string
+            uid: string
         }
         price: {
             total: {
@@ -50,6 +56,7 @@ export type SortType = 'price_min' | 'price_max' | 'time'
 export type AirlineType = {
     uid: string
     caption: string
+    checked: boolean
 }
 
 export type FiltersType = {

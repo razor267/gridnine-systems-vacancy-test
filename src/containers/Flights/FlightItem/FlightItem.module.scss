@@ -11,6 +11,16 @@
     background: $blue;
     padding: 5px;
 
+    .logo {
+      display: grid;
+      align-items: center;
+    }
+
+    img {
+      padding-left: 10px;
+      height: 28px;
+    }
+
     .priceWrapper {
       justify-self: end;
       justify-items: end;
